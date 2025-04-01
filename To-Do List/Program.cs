@@ -1,4 +1,4 @@
-﻿// See https://aka.ms/new-console-template for more information
+// See https://aka.ms/new-console-template for more information
 LinkedList<string> tasks = new LinkedList<string>();
 
 while (true)
@@ -13,37 +13,51 @@ while (true)
     }
     else if (choice == 1)
     {
-        Console.WriteLine("Write the task:");
-        tasks.AddLast(Console.ReadLine());
+        AddTask(tasks);
 
     }
     else if (choice == 2)
     {
-        int count = 0;
-        foreach (string task in tasks)
-        {
-            Console.WriteLine("[{0}] {1}", count, task);
-            count++;
-        }
+        DisplayTasks(tasks);
     }
     else if (choice == 3)
     {
-        Console.WriteLine("Which task at which index do you weant to remove");
-        int index;
-        try { index = int.Parse(Console.ReadLine()); }
-        catch { Console.WriteLine("Invalid index"); continue; }
-        int listLenght = tasks.Count;
-        if (index < listLenght)
-        {
-            tasks.Remove(tasks.ElementAt(index));
-        }
-        else
-        {
-            Console.WriteLine("Invalid index");
-        }
+        RemoveTask(tasks);
     }
     else
     {
         Console.WriteLine("Invalid choice");
+    }
+}
+
+static void AddTask(LinkedList<string> tasks){
+    Console.WriteLine("Write the task:");
+    tasks.AddLast(Console.ReadLine());
+}
+
+static void DisplayTasks(LinkedList<string> tasks)
+{
+    int count = 0;
+    foreach (string task in tasks)
+    {
+        Console.WriteLine("[{0}] {1}", count, task);
+        count++;
+    }
+}
+
+static void RemoveTask(LinkedList<string> tasks)
+{
+    Console.WriteLine("Which task at which index do you weant to remove");
+    int index;
+    try { index = int.Parse(Console.ReadLine()); }
+    catch { Console.WriteLine("Invalid index"); return; }
+    int listLenght = tasks.Count;
+    if (index < listLenght)
+    {
+        tasks.Remove(tasks.ElementAt(index));
+    }
+    else
+    {
+        Console.WriteLine("Invalid index");
     }
 }
